@@ -1,0 +1,14 @@
+public class Enemy extends Actor
+{
+    int maxHealth;
+    int maxMana;
+    int currentHealth;
+    int currentMana;
+    int strength;
+    int defense;
+    int magic;
+    int speed;
+    boolean isPlayer;
+    public Enemy();
+    abstract void act();
+}
