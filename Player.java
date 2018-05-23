@@ -33,4 +33,7 @@ public class Player extends Actor
     isKnocked = true;
     //come back to this 
   }
+  public void act()
+  {}
+  
 }
