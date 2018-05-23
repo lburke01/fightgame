@@ -26,7 +26,7 @@ public class Player extends Actor
     if(currentMana + change > maxMana) //uses same control loop system as in changeHealth
       currentMana = maxMana;
     else
-    currentMana += change; //if magic is used, change is negative; if mana potion is used, change is positive
+      currentMana += change; //if magic is used, change is negative; if mana potion is used, change is positive
   }
   public void knockOut()
   {
