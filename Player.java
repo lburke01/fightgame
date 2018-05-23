@@ -15,7 +15,11 @@ public class Player extends Actor
   }
   public void changeHealth(int change)
   {
-    currentHealth += change; //if change is damage, it is a negative value; if change is healing, it is a positive value
+    if(currentHealth + change > maxHealth)
+      currentHealth = maxHealth;
+    else
+      currentHealth += change; //if change is damage, it is a negative value; if change is healing, it is a positive value
+    
   }
   public void changeMana(int change)
   {
