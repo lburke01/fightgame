@@ -1,3 +1,4 @@
+import java.util.*;
 public class Party
 {
   List<Actor> players = new ArrayList<Actor>();
@@ -18,13 +19,16 @@ public class Party
     int minSpot = allActors.size();
     while(allActors.size() > 0)
     {
-      for(int i = 0; i < allActors.size(); i ++)
+    	int i = 0;
+    	
+      while(i < allActors.size())
       { 
-        if(allActors.get(i) < minSpeed)
+        if(allActors.get(i).speed < minSpeed)
         {
-          minSpeed = allActors.get(i);
+          minSpeed = allActors.get(i).speed;
           minSpot = i;
         }
+        i ++;
       }
       turnSeq.add(allActors.remove(i));
     }
@@ -33,7 +37,7 @@ public class Party
     
   public List<Actor> setAllActors()
   {
-    List<Actor> allActors = new ArrayList<Actors>(players.size() + enemies.size());
+    List<Actor> allActors = new ArrayList<Actor>(players.size() + enemies.size());
     for(int i = 0; i < players.size(); i ++)
       allActors.add(players.get(i));
     for(int i = 0; i < enemies.size(); i ++)
