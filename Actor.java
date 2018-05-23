@@ -1,4 +1,5 @@
 public abstract class Actor {
+    String name;
     int maxHealth;
     int maxMana;
     int currentHealth;
