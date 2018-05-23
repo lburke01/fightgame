@@ -40,3 +40,4 @@ public class Party
       allActors.add(enemies.get(i));
     return allActors;
   }
+}
