@@ -1,7 +1,7 @@
 public class Player extends Actor
 {
   boolean isKnocked = false;
-  public Player(PlayerClass c)
+  public Player(ActorClass c)
   {
     maxHealth = c.getHealthStat();
     maxMana = c.getManaStat();
