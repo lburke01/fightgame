@@ -9,6 +9,6 @@ public abstract class Actor {
     int speed;
     boolean isPlayer;
     abstract void act();
-    abstract void changeHealth();
-    abstract void changeMana();
+    abstract void changeHealth(int change);
+    abstract void changeMana(int change);
 }
