@@ -1,6 +1,6 @@
 //accessors for player stats
 //created for each player
-public abstract class PlayerClass
+public abstract class ActorClass
 {
   abstract int getHealthStat();
   abstract int getManaStat();
