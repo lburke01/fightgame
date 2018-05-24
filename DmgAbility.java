@@ -7,7 +7,7 @@ public class DmgAbility extends Ability
   public void cast()
   {
     super();
-    int dmg = -1 * ((caster.magic / recipient.defense) * r);
+    int dmg = -1 * ((caster.magic / recipient.defense) * rate);
     recipient.changeHealth(dmg);
   }
 }
