@@ -7,7 +7,7 @@ public class HealAbility extends Ability
   public void cast()
   {
     super();
-    int heal = actor.magic * rate;
+    int heal = caster.magic * rate;
     recipient.changeHealth(heal);
   }
 }
