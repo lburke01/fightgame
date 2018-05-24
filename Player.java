@@ -1,8 +1,9 @@
 public class Player extends Actor
 {
   boolean isKnocked = false;
-  public Player(ActorClass c)
+  public Player(String theName ,ActorClass c)
   {
+    name = theName;
     maxHealth = c.getHealthStat();
     maxMana = c.getManaStat();
     currentHealth = maxHealth;
@@ -31,7 +32,8 @@ public class Player extends Actor
   public void knockOut()
   {
     isKnocked = true;
-    //come back to this 
+    currentHP = 0;
+    
   }
   public void act()
   {
