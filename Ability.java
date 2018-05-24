@@ -17,6 +17,7 @@ public class Ability
   }
   public void cast()
   {
+    //implement some kind of actor used ability print out
     caster.changeMana(manaCost);
   }
 }
