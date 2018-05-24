@@ -34,6 +34,8 @@ public class Player extends Actor
     //come back to this 
   }
   public void act()
-  {}
+  {
+    Menu.getCommand();
+  }
   
 }
