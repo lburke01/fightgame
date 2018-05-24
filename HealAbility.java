@@ -10,3 +10,4 @@ public class HealAbility extends Ability
     int heal = actor.magic * rate;
     recipient.changeHealth(heal);
   }
+}
