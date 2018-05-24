@@ -4,10 +4,10 @@ public class DmgAbility extends Ability
   {
     super(r, mC, a, rC, n, d);
   } 
-  public void cast()
+  public static void cast()
   {
     super();
-    int dmg = -1 * ((caster.magic / recipient.defense) * rate);
+    int dmg = -1 * (int)(magic/(100/(100 + defense)) * rate);
     recipient.changeHealth(dmg);
   }
 }
