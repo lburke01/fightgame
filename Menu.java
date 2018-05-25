@@ -3,7 +3,7 @@ public class Menu
 {
   public static int attack(int strength, int defense, attack)
   {
-    return (int)((double(strength)/(100/(100 + defense)))); //change the constant
+    return (int)((double(strength)*(100/(100 + defense)))); //change the constant
   }
   public static int magic(List<Ability> magicList)
   {
