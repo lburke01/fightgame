@@ -15,13 +15,14 @@ public class Slime extends Enemy
       speed=1+((int)((level*Math.Random())+1));
       isPlayer=false;
     }
-    public void act()
+    public Actor act(Actor recipient)
     {
-      
-      currentHealth+=(maxHealth*.2)
+      recipient.changeHealth(-1*baseAttack(recipient.getDefense))
+      currentHealth+=(maxHealth*.2);
+      return recipient;
     }
-    public int baseAttack(Actor recipient)
+    public int baseAttack(int defense)
     {
-        return (int)((double(strength)*(100/(100 + recipient.getDefense()))));
+        return (int)((double(strength)*(100/(100 + defense))));
     }
  }
