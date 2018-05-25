@@ -9,7 +9,7 @@ public class Slime extends Enemy
     {
       maxHealth = 7 + (level*2) + (int)((level*Math.Random()));
       currentHealth = maxHealth;
-      strength=5+level+((int)((level*Math.Random())+1));
+      strength=3+level+((int)((level*Math.Random())+1));
       defense=2+level;
       speed=1+((int)((level*Math.Random())+1));
     }
@@ -20,6 +20,6 @@ public class Slime extends Enemy
     }
     public int baseAttack(Actor recipient)
     {
-        return (int) (((double) strength/recipient)*)
+        return (int)((double(strength)*(100/(100 + recipient.getDefense()))));
     }
  }
