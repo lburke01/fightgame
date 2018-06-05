@@ -1,9 +1,12 @@
 public abstract class Actor {
-    String name;
     int maxHealth;
     int maxMana;
     int currentHealth;
     int currentMana;
+    int maxStrength;
+    int maxDefense;
+    int maxMagic;
+    int maxSpeed;
     int strength;
     int defense;
     int magic;

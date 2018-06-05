@@ -11,7 +11,8 @@ public class Party
     for(int i = 0; i < allEnemies.size(); i ++)
       players.add(allEnemies.get(i));
   }
-  public List<Actor> getTurnSequence()
+  
+  public static List<Actor> getTurnSequence()
   {
     List<Actor> allActors = setAllActors();
     List<Actor> turnSeq = new ArrayList<Actor>();
