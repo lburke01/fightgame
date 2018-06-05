@@ -1,6 +1,6 @@
 public class Dragon extends Enemy
 {
-	int maxHealth;
+    int maxHealth;
     int currentHealth;
     int maxStrength;
     int maxDefense;
