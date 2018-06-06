@@ -1,48 +1,25 @@
 import java.util.*;
 public class Party
 {
-  List<Actor> players = new ArrayList<Actor>();
-  List<Actor> enemies = new ArrayList<Actor>();
-  
-  public Party(List<Actor> allPlayers, List<Actor> allEnemies)
+  static List<Actor> players = new ArrayList<Actor>();
+  final int maxGold = 9999;
+  static int gold = 50;
+  static List<Item> bag = new ArrayList<Item>();
+  public Party(List<Actor> allPlayers)
   {
     for(int i = 0; i < allPlayers.size(); i ++)
       players.add(allPlayers.get(i));
-    for(int i = 0; i < allEnemies.size(); i ++)
-      players.add(allEnemies.get(i));
   }
-  
-  public static List<Actor> getTurnSequence()
+  public void addItem(Item item)
   {
-    List<Actor> allActors = setAllActors();
-    List<Actor> turnSeq = new ArrayList<Actor>();
-    int minSpeed = Integer.MAX_VALUE;
-    int minSpot = allActors.size();
-    while(allActors.size() > 0)
-    {
-    	int i = 0;
-    	
-      while(i < allActors.size())
-      { 
-        if(allActors.get(i).speed < minSpeed)
-        {
-          minSpeed = allActors.get(i).speed;
-          minSpot = i;
-        }
-        i ++;
-      }
-      turnSeq.add(allActors.remove(i));
-    }
-    return turnSeq;
+    bag.add(item);
+    gold -= item.value;
+    if(gold < 0)
+      gold = 0;
   }
-    
-  public List<Actor> setAllActors()
+  public void sellItem(int i)
   {
-    List<Actor> allActors = new ArrayList<Actor>(players.size() + enemies.size());
-    for(int i = 0; i < players.size(); i ++)
-      allActors.add(players.get(i));
-    for(int i = 0; i < enemies.size(); i ++)
-      allActors.add(enemies.get(i));
-    return allActors;
+    gold += bag.get(i).value;
+    bag.remove(i);
   }
 }
