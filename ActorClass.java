@@ -8,6 +8,7 @@ public class ActorClass
 	private int actorDefense;
 	private int actorMagic;
 	private int actorSpeed;
+	
 	private String[] commands = new String[3];
 	private String playerClass;
 	public ActorClass(int choice)
