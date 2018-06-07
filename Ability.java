@@ -2,16 +2,13 @@ public class Ability
 {
   String name;
   String desc;
-  int rate;
+  double rate;
   int manaCost;
   Actor caster;
   Actor recipient;
-  public Ability(double r, int mC, Actor a, Actor rC, String n, String d)
+  public Ability(String n, String d, int mC)
   {
-    rate = r;
-    manaCost = mC;
-    caster = a;
-    recipient = rC;
+  	manaCost = mC;
     name = n;
     desc = d;
   }
