@@ -1,6 +1,6 @@
 public class Dragon extends Enemy
 {
-    int maxHealth;
+	int maxHealth;
     int currentHealth;
     int maxStrength;
     int maxDefense;
@@ -11,6 +11,7 @@ public class Dragon extends Enemy
     int count;
     boolean isPlayer;
     int target;
+    int gold;
     public Dragon(int level)
     {
       maxHealth = 15 + (level*6);
@@ -23,6 +24,7 @@ public class Dragon extends Enemy
       defense=maxDefense;
       speed=maxSpeed;
       count=0;
+      gold=level*40;
     }
     public Environment act(Environment e)
     {
@@ -34,7 +36,7 @@ public class Dragon extends Enemy
       	}
       }
       else
-        target=findTarget();
+        target=findTarget(e);
         e.get(target).changeHealth(-1*baseAttack(e.get(target).getDefense()));
       return e;
     }

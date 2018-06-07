@@ -1,6 +1,6 @@
 public class Griffon extends Enemy
 {
-    int maxHealth;
+	int maxHealth;
     int currentHealth;
     int maxStrength;
     int maxDefense;
@@ -10,6 +10,8 @@ public class Griffon extends Enemy
     int speed;
     int count=0;
     boolean isPlayer;
+    int target;
+    int gold;
     public Griffon(int level)
     {
       maxHealth = 9 + (level*3)+((int)((level*Math.random())+1));
@@ -21,18 +23,19 @@ public class Griffon extends Enemy
       strength=maxStrength;
       defense=maxDefense;
       speed=maxSpeed;
+      gold=level*30;
     }
-    public Actor act(Actor recipient)
+    public Environment act(Environment e)
     {
+    	target=findTarget(e);
     	if(count==2)
-    	{
-    		recipient.changeHealth(-1*((int)(((double)recipient.getMaxHealth())*.75)));
+      	{
+      		e.getPlayers().get(target).changeHealth(-1*((int)(((double)e.getPlayers().get(target).getMaxHealth())*.75)));
     		count=0;
-    	}
-    	else
-		    recipient.changeHealth(-1*baseAttack(recipient.getDefense()));
-		count++;
-      return recipient;
+      	}
+      else
+        e.getPlayers().get(target).changeHealth(-1*baseAttack(e.get(target).getDefense()));
+      return e;
     }
     public int baseAttack(int d)
     {

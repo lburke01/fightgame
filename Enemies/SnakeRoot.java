@@ -1,4 +1,4 @@
-public class Golem extends Enemy
+public class SnakeRoot extends Enemy
 {
 	int maxHealth;
     int currentHealth;
@@ -9,28 +9,36 @@ public class Golem extends Enemy
     int defense;
     int speed;
     boolean isPlayer;
+    int count=0;
     int target;
     int gold;
-    public Golem(int level)
+    public SnakeRoot(int level)
     {
-      maxHealth = 12 + (level*4)+((int)((level*2*Math.random())+1));
+      maxHealth = 7 + (level*2)+((int)((level*Math.random())+1));
       currentHealth = maxHealth;
-      maxStrength=5+(level*2)+((int)((level*Math.random())+1));
-      maxDefense=15+(level*3)+((int)((level*Math.random())+1));
+      maxStrength=9+(level*2)+((int)((level*Math.random())+1));
+      maxDefense=3+(level)+((int)((level*Math.random())+1));
       maxSpeed=1+(level);
       isPlayer=false;
       strength=maxStrength;
       defense=maxDefense;
       speed=maxSpeed;
-      gold=10*level;
+      gold=level*15;
+    }
+    public Actor act(Actor recipient)
+    {
+      recipient.changeHealth(-1*baseAttack(recipient.getDefense()));
+      if(count==2)
+      {
+      	strength+=maxStrength*.2;
+      	count=0;
+      }
+      count++;
+      return recipient;
     }
     public int baseAttack(int d)
     {
         return (int)(((double)strength)*(100.0/(100 + d)));
-    }
-    public int getMaxHealth()
-    {
-    	return maxHealth;
     }
     public int getHealth()
     {

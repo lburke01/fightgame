@@ -1,4 +1,4 @@
-public class Golem extends Enemy
+public class Wolf extends Enemy
 {
 	int maxHealth;
     int currentHealth;
@@ -11,26 +11,23 @@ public class Golem extends Enemy
     boolean isPlayer;
     int target;
     int gold;
-    public Golem(int level)
+    public Wolf(int level)
     {
-      maxHealth = 12 + (level*4)+((int)((level*2*Math.random())+1));
+      maxHealth = 9 + (level*3)+((int)((level*Math.random())+1));
       currentHealth = maxHealth;
       maxStrength=5+(level*2)+((int)((level*Math.random())+1));
-      maxDefense=15+(level*3)+((int)((level*Math.random())+1));
-      maxSpeed=1+(level);
+      maxDefense=3+(2*level);
+      maxSpeed=5+(level*2)+((int)((level*Math.random())+1));
       isPlayer=false;
       strength=maxStrength;
       defense=maxDefense;
       speed=maxSpeed;
-      gold=10*level;
+      gold=level*6;
     }
+    
     public int baseAttack(int d)
     {
         return (int)(((double)strength)*(100.0/(100 + d)));
-    }
-    public int getMaxHealth()
-    {
-    	return maxHealth;
     }
     public int getHealth()
     {

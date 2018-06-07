@@ -9,6 +9,8 @@ public class Bat extends Enemy
     int defense;
     int speed;
     boolean isPlayer;
+    int target;
+    int gold;
     public Bat(int level)
     {
       maxHealth = 4 + (level);
@@ -20,12 +22,9 @@ public class Bat extends Enemy
       strength=maxStrength;
       defense=maxDefense;
       speed=maxSpeed;
+      gold=level*4;
     }
-    public Actor act(Actor recipient)
-    {
-      recipient.changeHealth(-1*baseAttack(recipient.getDefense()));
-      return recipient;
-    }
+    
     public int baseAttack(int d)
     {
         return (int)(((double)strength)*(100.0/(100 + d)));
