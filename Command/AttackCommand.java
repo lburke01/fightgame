@@ -17,6 +17,9 @@ public class AttackCommand extends Command
 			damage = 0;
 			return;
 		}
-		currentTarget.changeHealth(calculateEffect());
+		else
+			damage = calculateEffect();
+		
+		currentTarget.changeHealth(damage);
 	}
 }
