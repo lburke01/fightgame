@@ -1,27 +1,34 @@
+import java.util.*;
 public class Player extends Actor
 {	
 	Menu playerMenu;
-	boolean isKnocked = false;
+	private boolean isKnocked = false;
 	String name;
 	String playerClass;
+	String[] commands;
+	List<Ability> abilities = new ArrayList<Ability>();
+	final int MAXHEALTH = 999;
+	final int MAXMAGIC = 999;
+	
+	
 	public Player(String n, ActorClass c)
 	  {
 	 	name = n;
-	 	playerClass = c.getClass();
-	    maxHealth = c.getHealthStat();
-	    maxMana = c.getManaStat();
+	 	playerClass = c.getPlayerClass();
+	    maxHealth = c.getHealth();
+	    maxMana = c.getMana();
 	    currentHealth = maxHealth;
 	    currentMana = maxMana;
-	    maxStrength = c.getStrengthStat();
-	    maxDefense = c.getDefenseStat();
-	    maxMagic = c.getMagicStat();
-	    maxSpeed = c.getSpeedStat();
+	    maxStrength = c.getStrength();
+	    maxDefense = c.getDefense();
+	    maxMagic = c.getMagic();
+	    maxSpeed = c.getSpeed();
 	    strength = maxStrength;
 	    defense = maxDefense;
 	    magic = maxMagic;
 	    speed = maxSpeed;
 	    commands = c.getCommandList();
-	    playerMenu = new Menu(Player.class);
+	    playerMenu = new Menu(this); //not sure if this works
 	    isPlayer = true;
 	  }
 	  public void changeHealth(int change)
@@ -32,6 +39,7 @@ public class Player extends Actor
 	      currentHealth += change; //if change is damage, it is a negative value; if change is healing, it is a positive value
 	    
 	  }
+
 	  public void changeMana(int change)
 	  {
 	    if(currentMana + change > maxMana) //uses same control loop system as in changeHealth
@@ -42,10 +50,16 @@ public class Player extends Actor
 	  public void knockOut()
 	  {
 	    isKnocked = true;
+	    currentHealth = 0;
 	    //come back to this 
+	  }
+	  public boolean isKnocked()
+	  {
+		  return isKnocked;
 	  }
 	  public void act()
 	  {
 	  	
 	  }
+	
 }
