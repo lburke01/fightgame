@@ -14,7 +14,7 @@ public class Ability
   }
   public void cast()
   {
-    //implement some kind of actor used ability print out
+    recipient.changeHealth(/*we need to discuss damage*/);
     caster.changeMana(manaCost);
   }
 }
