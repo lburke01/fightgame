@@ -13,13 +13,13 @@ public class Party
   public void addItem(Item item)
   {
     bag.add(item);
-    gold -= item.value;
+    gold -= item.getValue();
     if(gold < 0)
       gold = 0;
   }
   public void sellItem(int i)
   {
-    gold += bag.get(i).value;
+    gold += bag.get(i).getValue();
     bag.remove(i);
   }
 }
