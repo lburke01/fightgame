@@ -1,4 +1,4 @@
-public class Wolf extends Enemy
+public class Wolf2 extends Enemy
 {
 	int maxHealth;
     int currentHealth;
