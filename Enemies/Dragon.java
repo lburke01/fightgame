@@ -51,13 +51,5 @@ public class Dragon extends Enemy
     public int getDefense()
     {
     	return defense;
-    }
-    public void changeHealth(int change)
-    {
-    if(currentHealth + change > maxHealth) //Prevents over-healing by setting currentHealth to maxHealth if the sum is greater than maxHealth
-      currentHealth = maxHealth;
-    else
-      currentHealth += change; //if change is damage, it is a negative value; if change is healing, it is a positive value
-    }
-    
+    }    
 }
