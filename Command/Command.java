@@ -9,7 +9,7 @@ public abstract class Command
 	protected Actor[] targets;
 	protected Actor currentTarget;
 	protected int currentIndex;
-	protected int damage;
+	protected int change;
 	protected boolean groupTarget = true; //true = enemies, false = allies
 	public Command(Actor a, Actor[] ab)
 	{
@@ -22,9 +22,9 @@ public abstract class Command
 	{
 		return name;
 	}
-	public int getDamage()
+	public int getChange()
 	{
-		return damage;
+		return change;
 	}
-	abstract public int calculateEffect();
+	abstract public int calculateEffect();	
 }

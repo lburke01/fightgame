@@ -6,20 +6,22 @@ public class AttackCommand extends Command
 		super(a, ab); //ab.length should equal 1
 		name = "Attack";
 	}
+	@Override
 	public int calculateEffect()
 	{
-		return -1 * (int) ((Math.random() + 1) * (caster.getStr()) - (currentTarget.getDef()/5));
+		return -1 * (int) ((Math.random() + 1) * (caster.getStr() * Math.random() * Math.PI) - (currentTarget.getDef() * Math.random() * .33)); //
 	}
 	public void execute()
 	{
 		if(currentTarget.isKnocked())
 		{
-			damage = 0;
+			change = 0;
 			return;
 		}
 		else
-			damage = calculateEffect();
-		
-		currentTarget.changeHealth(damage);
+		{
+			change = calculateEffect();
+		}
+		currentTarget.changeHealth(change);
 	}
 }
