@@ -1,17 +1,15 @@
 import java.util.*;
-public class Player extends Actor
+public abstract class Player extends Actor
 {	
-	Menu playerMenu;
 	private boolean isKnocked = false;
-	String name;
-	String playerClass;
-	String[] commands;
-	List<Ability> abilities = new ArrayList<Ability>();
-	final int MAXHEALTH = 999;
-	final int MAXMAGIC = 999;
+	protected String name;
+	protected String playerClass;
+	protected String[] commands;
+	protected final static int MAX_LEVEL = 4;
+	protected List<Ability> abilities = new ArrayList<Ability>();
 	
 	
-	public Player(String n, ActorClass c)
+	public Player(String n, ActorClass c, int level)
 	  {
 	 	name = n;
 	 	playerClass = c.getPlayerClass();
@@ -28,9 +26,29 @@ public class Player extends Actor
 	    magic = maxMagic;
 	    speed = maxSpeed;
 	    commands = c.getCommandList();
-	    playerMenu = new Menu(this); //not sure if this works
 	    isPlayer = true;
 	  }
+		protected void incrementAllStats(int HPmult, int MPmult, int strMult, int magMult, int defMult, int spdMult)
+		{
+			maxHealth += 15 * HPmult;
+			maxMana += 15 * MPmult;
+			maxStrength += 2 * strMult;
+			maxDefense += 2 * defMult;
+			maxMagic += 2 * magMult;
+			maxSpeed += 2 * spdMult;
+			if(maxHealth > ActorClass.MAX_BAR) maxHealth = ActorClass.MAX_BAR;
+			if(maxMana > ActorClass.MAX_BAR) maxMana = ActorClass.MAX_BAR;
+			if(maxStrength > ActorClass.MAX_STAT) maxStrength = ActorClass.MAX_STAT;
+			if(maxMagic > ActorClass.MAX_STAT) maxMagic = ActorClass.MAX_STAT;
+			if(maxDefense > ActorClass.MAX_STAT) maxDefense = ActorClass.MAX_STAT;
+			if(maxSpeed > ActorClass.MAX_STAT) maxSpeed = ActorClass.MAX_STAT;
+			currentHealth = maxHealth;
+		    currentMana = maxMana;
+			strength = maxStrength;
+			defense = maxDefense;
+			magic = maxMagic;
+			speed = maxSpeed;
+		}
 	  public void changeHealth(int change)
 	  {
 	    if(currentHealth + change > maxHealth) //Prevents over-healing by setting currentHealth to maxHealth if the sum is greater than maxHealth
@@ -57,9 +75,50 @@ public class Player extends Actor
 	  {
 		  return isKnocked;
 	  }
-	  public void act()
-	  {
-	  	
-	  }
-	
+	  
+	  protected abstract void setLevel(int level);
+
+	@Override
+	public int getHealth() {
+		return currentHealth;
+	}
+
+	@Override
+	public int getMana() {
+		return currentMana;
+	}
+
+	@Override
+	public int getStr() {
+		return strength;
+	}
+
+	@Override
+	public int getMag() {
+		return magic;
+	}
+
+	@Override
+	public int getDef() {
+		return defense;
+	}
+
+	@Override
+	public int getSpd() {
+		return speed;
+	}
+	@Override
+	public int getMaxHealth()
+	{
+		return maxHealth;
+	}
+	@Override
+	public int getMaxMana()
+	{
+		return maxMana;
+	}
+	public ArrayList<Ability> getAbilities()
+	{
+		return (ArrayList<Ability>) abilities;
+	}
 }
