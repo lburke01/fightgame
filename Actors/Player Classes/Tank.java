@@ -1,68 +1,62 @@
 
-public class Fighter extends Player
+public class Tank extends Player
 {
-	private int enemiesLeft = 0;
+	private int takenDamageNeeded;
 	private int level;
 	private boolean beenLevel_1;
 	private boolean beenLevel_2;
 	private boolean beenLevel_3;
-	public Fighter(String n, ActorClass c)
+	public Tank(String n, ActorClass c)
 	{
 		this(n, c, 1);
-		
 	}
-	public Fighter(String n, ActorClass c, int level)
+	public Tank(String n, ActorClass c, int level)
 	{
 		super(n, c, level);
 		this.level = level;
 		setLevel(level);
 	}
-	
 	public void levelUP()
 	{
-		if(!moreEnemiesRequired() && level < MAX_LEVEL)
-		{	
-			level ++;
+		if(!moreDamageNeeded() && level < MAX_LEVEL)
+		{
 			setLevel(level);
 		}
 	}
-	@Override
+	
 	protected void setLevel(int level)
 	{
 		if(level == 1)
 		{
 			beenLevel_1 = true;
-			enemiesLeft = 5;
+			takenDamageNeeded = 500;
 		}
 		else if(level == 2)
 		{
 			beenLevel_2 = true;
-			enemiesLeft = 10;
-			abilities.add(GameObjects.getAllFighterSkills()[0]);
-			abilities.add(GameObjects.getAllFighterSkills()[1]);
-			incrementAllStats(2, 1, 3, 1, 2, 2);
+			takenDamageNeeded = 2100;
+			incrementAllStats(3, 0, 2, 0, 3, 1);
 			if(!beenLevel_1)
 				setLevel(level - 1);
 		}
 		else if(level == 3)
 		{
 			beenLevel_3 = true;
-			enemiesLeft = 35;
-			abilities.add(GameObjects.getAllFighterSkills()[2]);
+			takenDamageNeeded = 5500;
+			incrementAllStats(3, 0, 2, 0, 3, 1);
 			if(!beenLevel_2)
 				setLevel(level - 1);
 		}
 		else if(level == MAX_LEVEL)
 		{
-			enemiesLeft = 0;
-			abilities.add(GameObjects.getAllFighterSkills()[3]);
+			takenDamageNeeded = 0;
+			incrementAllStats(3, 0, 2, 0, 3, 1);
 			if(!beenLevel_3)
 				setLevel(level - 1);
 		}
 	}
-	private boolean moreEnemiesRequired()
+	private boolean moreDamageNeeded()
 	{
-		return enemiesLeft > 0;
+		return takenDamageNeeded > 0;
 	}
-	
 }

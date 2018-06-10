@@ -3,38 +3,65 @@ public class Healer extends Player
 {
 	private int healingLeft = 0;
 	private int level;
-	private int MAXLEVEL = 4;
+	private boolean beenLevel_1;
+	private boolean beenLevel_2;
+	private boolean beenLevel_3;
 	public Healer(String n, ActorClass c)
 	{
-		super(n, c);
-		level = 1;
-		healingLeft = 800;
-		abilities.add(GameObjects.getAllHealerMagic()[0]);
+		this(n, c, 1);
+	}
+	public Healer(String n, ActorClass c, int level)
+	{
+		super(n, c, level);
+		this.level = level;
+		setLevel(this.level);
 	}
 	
 	public void levelUP()
 	{
-		if(!moreHealingRequired() && level < MAXLEVEL)
+		if(!moreHealingRequired() && level < MAX_LEVEL)
 		{
 			level ++;
-			if(level == 2)
-			{
-				healingLeft = 2500;
-				abilities.add(GameObjects.getAllHealerMagic()[1]);
-				abilities.add(GameObjects.getAllHealerMagic()[2]);
-				abilities.add(GameObjects.getAllHealerMagic()[3]);
-			}
-			else if(level == 3)
-			{
-				healingLeft = 9999;
-				abilities.add(GameObjects.getAllHealerMagic()[4]);
-			}
-			else if(level == MAXLEVEL)
-			{
-				healingLeft = 0;
-				abilities.add(GameObjects.getAllHealerMagic()[5]);
-				abilities.add(GameObjects.getAllHealerMagic()[6]);
-			}
+			setLevel(level);
+		}
+	}
+	@Override
+	protected void setLevel(int level)
+	{
+		if(level == 1)
+		{
+			beenLevel_1 = true;
+			healingLeft = 600;
+			abilities.add(GameObjects.getAllHealerMagic()[0]);
+		}
+		else if(level == 2)
+		{
+			beenLevel_2 = true;
+			healingLeft = 2400;
+			abilities.add(GameObjects.getAllHealerMagic()[1]);
+			abilities.add(GameObjects.getAllHealerMagic()[2]);
+			abilities.add(GameObjects.getAllHealerMagic()[3]);
+			incrementAllStats(1, 3, 1, 3, 2, 2);
+			if(!beenLevel_1)
+				setLevel(level - 1);
+		}
+		else if(level == 3)
+		{
+			beenLevel_3 = true;
+			healingLeft = 7200;
+			abilities.add(GameObjects.getAllHealerMagic()[4]);
+			incrementAllStats(1, 3, 1, 3, 2, 2);
+			if(!beenLevel_2)
+				setLevel(level - 1);
+		}
+		else if(level == MAX_LEVEL)
+		{
+			healingLeft = 0;
+			abilities.add(GameObjects.getAllHealerMagic()[5]);
+			abilities.add(GameObjects.getAllHealerMagic()[6]);
+			incrementAllStats(1, 3, 1, 3, 2, 2);
+			if(!beenLevel_3)
+				setLevel(level - 1);
 		}
 	}
 	private boolean moreHealingRequired()
