@@ -37,4 +37,5 @@ public abstract class Enemy extends Actor
     		
     	}
     }
+    public void changeHealth(int change)
 }
